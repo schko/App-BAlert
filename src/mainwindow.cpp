@@ -75,7 +75,9 @@ void reader_thread_function(std::atomic<bool> &shutdown) {
 
 	_DEVICE_INFO *pInfo = GetDeviceInfo(NULL);
 	if (pInfo == NULL) { throw std::runtime_error("No device found. Is it plugged in?"); }
-
+	// TODO: Allow the default install location to be changed
+	int init_config = SetConfigPath("C:\\ABM\\B-Alert\\Config\\"); 
+	
 	// TODO: Determine the device type from pInfo. Below is hard-coded to X24Standard.
 	int init_res = InitSession(ABM_DEVICE_X24Standard, ABM_SESSION_RAW, -1, 0);
 	if (init_res != INIT_SESSION_OK) {
